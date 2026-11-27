@@ -13,18 +13,20 @@
 button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2.25rem;}
 
 :root {
---navy: #16283f;
---navy-deep: #0f1d30;
---ink: #1c2733;
---body-text: #33424f;
---muted: #68788a;
---brass: #a5813c;
---brass-soft: #c9ab63;
---paper: #f7f5f0;
---card: #ffffff;
---line: #ddd6c8;
---line-soft: #e9e4d8;
---field-bg: #fdfcf9;
+--navy: #122539;
+--navy-mid: #1c3a5c;
+--navy-deep: #081523;
+--ink: #17222d;
+--body-text: #37434e;
+--muted: #6e7a86;
+--brass: #97742a;
+--brass-soft: #c2a15c;
+--paper: #f4f1ea;
+--card: #fffefb;
+--line: #d8d0bd;
+--line-soft: #e7e1d2;
+--field-bg: #fbf8f1;
+--subtotal-bg: #f2ecdc;
 --warn-bg: #fdf3e3;
 --warn-line: #e3c07f;
 --warn-text: #7a5410;
@@ -34,24 +36,26 @@ button, [role="button"], select, summary, input:not([type="checkbox"], [type="ra
 --ok-bg: #eaf3ec;
 --ok-line: #a9c8b0;
 --ok-text: #2c5c38;
---total-bg: #16283f;
+--total-bg: #0d1e33;
 --total-text: #f2ead6;
---shadow: 0 10px 30px rgba(22, 40, 63, 0.08);
+--shadow: 0 1px 2px rgba(18, 37, 57, 0.05), 0 16px 36px rgba(18, 37, 57, 0.07);
 }
 @media (prefers-color-scheme: dark) {
 :root {
---navy: #1d3450;
---navy-deep: #0b1524;
+--navy: #1a2f47;
+--navy-mid: #24466b;
+--navy-deep: #060d17;
 --ink: #eef1f4;
---body-text: #c3cdd6;
+--body-text: #c6d0da;
 --muted: #8d9dab;
---brass: #c9ab63;
---brass-soft: #c9ab63;
---paper: #10161d;
---card: #18222d;
---line: #33414f;
---line-soft: #28343f;
---field-bg: #131d28;
+--brass: #c8a55e;
+--brass-soft: #d3b878;
+--paper: #090e14;
+--card: #121b26;
+--line: #2e3c4b;
+--line-soft: #24303d;
+--field-bg: #0e1620;
+--subtotal-bg: #1a2634;
 --warn-bg: #2e2413;
 --warn-line: #7a5f24;
 --warn-text: #e8c877;
@@ -61,9 +65,9 @@ button, [role="button"], select, summary, input:not([type="checkbox"], [type="ra
 --ok-bg: #16281b;
 --ok-line: #3c5c43;
 --ok-text: #a9d3b1;
---total-bg: #1d3450;
+--total-bg: #0a1727;
 --total-text: #f2ead6;
---shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+--shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 36px rgba(0, 0, 0, 0.35);
 }
 }
 
@@ -81,9 +85,12 @@ line-height: 1.65;
 
 /* ---------- Header ---------- */
 header.site {
-background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+background:
+radial-gradient(130% 170% at 16% 0%, var(--navy-mid) 0%, rgba(28, 58, 92, 0) 55%),
+linear-gradient(165deg, var(--navy) 0%, var(--navy-deep) 100%);
 color: #eef1f4;
-border-bottom: 3px solid var(--brass);
+border-bottom: 2px solid var(--brass);
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 1px 0 rgba(151, 116, 42, 0.35);
 }
 .site-inner {
 max-width: 1080px;
@@ -226,7 +233,7 @@ min-height: 2.5rem;
 }
 .seg button + button { border-left: 1px solid var(--line);}
 .seg button[aria-pressed="true"] {
-background: var(--navy);
+background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 140%);
 color: #fff;
 font-weight: 500;
 }
@@ -239,12 +246,13 @@ font-size: 16px;
 font-weight: 700;
 letter-spacing: 0.12em;
 color: #fff;
-background: var(--navy);
-border: 1px solid var(--navy);
+background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 55%, var(--navy-deep) 150%);
+border: 1px solid var(--navy-deep);
 border-bottom: 3px solid var(--brass);
 border-radius: 4px;
 cursor: pointer;
 min-height: 3rem;
+box-shadow: 0 6px 16px rgba(8, 21, 35, 0.22);
 }
 .calc-btn:active { transform: translateY(1px);}
 .form-note { font-size: 12.5px; color: var(--muted); margin: 10px 0 0;}
@@ -329,16 +337,17 @@ table.fees td.item span { color: var(--muted); font-size: 12.5px;}
 table.fees tr.subtotal td {
 font-weight: 700;
 color: var(--ink);
-background: var(--field-bg);
+background: var(--subtotal-bg);
 border-bottom: 1px solid var(--line);
 }
 table.fees td.item span.alt { color: var(--brass);}
 .grand {
 margin-top: 14px;
-background: var(--total-bg);
+background: linear-gradient(160deg, var(--navy) 0%, var(--total-bg) 70%);
 color: var(--total-text);
+border: 1px solid rgba(194, 161, 92, 0.45);
 border-radius: 4px;
-padding: 14px 16px;
+padding: 16px 18px;
 display: flex;
 flex-wrap: wrap;
 align-items: baseline;
@@ -351,6 +360,7 @@ font-family: "Noto Serif SC", serif;
 font-size: 24px;
 font-weight: 900;
 font-variant-numeric: tabular-nums;
+color: var(--brass-soft);
 }
 .grand .g-sub { width: 100%; font-size: 12.5px; color: #b9c6d2;}
 @media (prefers-color-scheme: dark) {.grand .g-sub { color: #9fb0c0;}}
@@ -365,83 +375,204 @@ border-radius: 4px;
 cursor: pointer;
 min-height: 2.5rem;
 }
-.btn-solid { background: var(--navy); color: #fff; border: 1px solid var(--navy);}
+.btn-solid { background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 60%, var(--navy-deep) 150%); color: #fff; border: 1px solid var(--navy-deep);}
 .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line);}
 .copy-ok { font-size: 13px; color: var(--ok-text); align-self: center; display: none;}
 
 .empty-state {
 border: 1px dashed var(--line);
 border-radius: 4px;
-padding: 26px 18px;
-text-align: center;
+padding: 20px 20px 16px;
 color: var(--muted);
 font-size: 14.5px;
 }
+.es-lead { margin: 0 0 16px; font-size: 14.5px;}
+.es-lead b { color: var(--ink); font-weight: 500;}
+.es-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px 26px;
+}
+@media (max-width: 560px) {.es-grid { grid-template-columns: 1fr;}}
+.es-block h4 {
+margin: 0 0 8px;
+font-family: "Noto Serif SC", "Songti SC", serif;
+font-size: 15px;
+font-weight: 700;
+color: var(--ink);
+}
+.es-block ul { list-style: none; margin: 0; padding: 0;}
+.es-block ul li { padding: 5px 0; font-size: 13.5px; line-height: 1.6;}
+.es-block ul li b { color: var(--ink); font-weight: 500;}
+.es-fees li {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+gap: 12px;
+border-bottom: 1px dashed var(--line-soft);
+}
+.es-fees li:last-child { border-bottom: 0;}
+.es-fees li b {
+color: var(--ink);
+font-weight: 700;
+font-variant-numeric: tabular-nums;
+white-space: nowrap;
+}
+.es-note { margin: 14px 0 0; font-size: 12.5px;}
 
 .fineprint { font-size: 12.5px; color: var(--muted); margin-top: 16px;}
 .fineprint p { margin: 0 0 6px;}
 
 /* ---------- Contact / footer ---------- */
 section.contact {
+position: relative;
 margin-top: 28px;
-background: var(--navy);
+background:
+radial-gradient(120% 190% at 50% -10%, var(--navy-mid) 0%, rgba(28, 58, 92, 0) 58%),
+linear-gradient(170deg, var(--navy) 0%, var(--navy-deep) 100%);
+border: 1px solid rgba(194, 161, 92, 0.4);
+border-top: 2px solid var(--brass);
 border-radius: 6px;
-color: #c3cedb;
-padding: 30px 34px 26px;
+color: #c9d4df;
+padding: 44px 48px 0;
+overflow: hidden;
 }
-@media (max-width: 640px) { section.contact { padding: 24px 22px 20px;}}
-.contact-head {
-display: flex;
-flex-wrap: wrap;
-align-items: baseline;
-justify-content: space-between;
-gap: 4px 20px;
-padding-bottom: 16px;
-border-bottom: 1px solid rgba(238, 241, 244, 0.16);
+section.contact::before {
+content: "";
+position: absolute;
+inset: 7px;
+border: 1px solid rgba(194, 161, 92, 0.2);
+border-radius: 4px;
+pointer-events: none;
 }
-.contact-head .name {
-font-family: "Noto Serif SC", serif;
-font-size: 22px;
-font-weight: 900;
-letter-spacing: 0.1em;
-color: #fff;
+@media (max-width: 640px) { section.contact { padding: 34px 22px 0;}}
+
+/* 铭牌区：名字居中 + 金色电话大字 */
+.plaque {
+position: relative;
+text-align: center;
+padding-bottom: 34px;
 }
-.contact-head .phone {
-font-size: 17px;
-font-variant-numeric: tabular-nums;
-color: var(--brass-soft);
-text-decoration: none;
-letter-spacing: 0.04em;
-}
-.contact-grid {
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-gap: 10px 28px;
-padding-top: 18px;
-}
-@media (max-width: 860px) {.contact-grid { grid-template-columns: 1fr; gap: 16px;}}
-.contact-cell h3 {
-margin: 0 0 6px;
+.plaque-label {
+margin: 0;
 font-size: 12px;
 font-weight: 500;
-letter-spacing: 0.26em;
+letter-spacing: 0.55em;
+text-indent: 0.55em;
 color: var(--brass-soft);
 }
-.contact-cell p { margin: 2px 0 0; font-size: 14px; line-height: 1.7;}
-.contact-cell b { color: #fff; font-weight: 500;}
-.offices { list-style: none; margin: 0; padding: 0; font-size: 14px;}
-.offices li { padding: 2px 0; color: #eef1f4;}
-.offices li span { color: #93a5b8; font-size: 13px; margin-left: 8px;}
+.plaque-name {
+margin: 14px 0 0;
+font-family: "Noto Serif SC", "Songti SC", serif;
+font-size: clamp(32px, 6.5vw, 46px);
+font-weight: 900;
+letter-spacing: 0.16em;
+text-indent: 0.16em;
+line-height: 1.2;
+color: #fff;
+white-space: nowrap;
+}
+.plaque-rule {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+margin: 22px auto 24px;
+max-width: 340px;
+}
+.plaque-rule::before, .plaque-rule::after {
+content: "";
+flex: 1;
+height: 1px;
+}
+.plaque-rule::before { background: linear-gradient(90deg, transparent, rgba(194, 161, 92, 0.75));}
+.plaque-rule::after { background: linear-gradient(90deg, rgba(194, 161, 92, 0.75), transparent);}
+.plaque-rule span {
+width: 7px;
+height: 7px;
+background: var(--brass-soft);
+transform: rotate(45deg);
+flex: none;
+}
+.plaque-phone {
+display: inline-block;
+text-decoration: none;
+}
+.plaque-phone-label {
+display: block;
+font-size: 12.5px;
+letter-spacing: 0.34em;
+text-indent: 0.34em;
+color: #93a5b8;
+margin-bottom: 6px;
+}
+.plaque-phone-num {
+display: block;
+font-family: "Noto Serif SC", "Songti SC", serif;
+font-size: clamp(25px, 5vw, 34px);
+font-weight: 700;
+letter-spacing: 0.06em;
+font-variant-numeric: tabular-nums;
+color: var(--brass-soft);
+line-height: 1.25;
+border-bottom: 1px solid transparent;
+transition: border-color 0.2s ease;
+}
+.plaque-phone:hover .plaque-phone-num,
+.plaque-phone:focus-visible .plaque-phone-num { border-bottom-color: rgba(194, 161, 92, 0.6);}
+
+/* 信息带：社交账号 | 线下办公室 */
+.contact-strip {
+position: relative;
+display: grid;
+grid-template-columns: 1fr 1.25fr;
+border-top: 1px solid rgba(238, 241, 244, 0.14);
+}
+.strip-cell { padding: 24px 34px 30px;}
+.strip-cell:first-child { padding-left: 6px;}
+.strip-cell:last-child { padding-right: 6px;}
+.strip-cell + .strip-cell { border-left: 1px solid rgba(238, 241, 244, 0.12);}
+.strip-cell h3 {
+margin: 0 0 12px;
+font-size: 11.5px;
+font-weight: 500;
+letter-spacing: 0.34em;
+color: var(--brass-soft);
+}
+.strip-cell p { margin: 0; font-size: 14.5px; line-height: 1.75; color: #c9d4df;}
+.strip-cell p + p { margin-top: 2px;}
+.strip-cell b { color: #fff; font-weight: 500;}
+.offices {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+flex-wrap: wrap;
+gap: 6px 0;
+font-size: 14.5px;
+line-height: 1.75;
+}
+.offices li { color: #c9d4df; white-space: nowrap;}
+.offices li b { color: #fff; font-weight: 500; margin-right: 7px;}
+.offices li + li { margin-left: 18px; padding-left: 18px; border-left: 1px solid rgba(238, 241, 244, 0.16);}
+@media (max-width: 700px) {
+.contact-strip { grid-template-columns: 1fr;}
+.strip-cell { padding: 20px 6px 24px;}
+.strip-cell + .strip-cell { border-left: 0; border-top: 1px solid rgba(238, 241, 244, 0.12);}
+.offices li + li { margin-left: 14px; padding-left: 14px;}
+}
 
 footer.site {
 max-width: 1080px;
 margin: 0 auto;
-padding: 18px 20px 34px;
+padding: 22px 20px 36px;
 font-size: 12.5px;
 color: var(--muted);
+text-align: center;
 }
-footer.site .rule { border-top: 1px solid var(--line); padding-top: 14px;}
-footer.site p { margin: 0 0 6px; max-width: 860px;}
+footer.site .rule { border-top: 1px solid var(--line); padding-top: 16px;}
+footer.site p { margin: 0 auto 6px; max-width: 780px;}
+footer.site .copy { letter-spacing: 0.05em;}
 
 @media print {
 header.site { background: #fff; color: #000; border-bottom: 2px solid #000;}
@@ -522,8 +653,8 @@ header.site .brand,.hero h1 { color: #000;}
 <div class="field">
 <label class="lbl" for="waitYears">预计案件等待年数 <span class="hint">用于估算年度庇护费</span></label>
 <select id="waitYears">
-<option value="1">1 年</option>
-<option value="2" selected>2 年</option>
+<option value="1" selected>1 年</option>
+<option value="2">2 年</option>
 <option value="3">3 年</option>
 <option value="4">4 年</option>
 <option value="5">5 年</option>
@@ -545,7 +676,29 @@ header.site .brand,.hero h1 { color: #000;}
 <div class="alert" id="deadlineAlert" role="status"></div>
 
 <div class="empty-state" id="emptyState">
-结果会显示在这里：<br />一年递交期限 · 工卡时间线 · 分阶段费用总表
+<p class="es-lead">填好左侧信息、点击<b>「开始计算」</b>，这里会生成您个人的时间表与费用表。先看一遍计算包含的内容与现行收费标准：</p>
+<div class="es-grid">
+<div class="es-block">
+<h4>时间表会算出</h4>
+<ul>
+<li><b>一年递交期限</b> — 入境满一年截止的具体日期与剩余天数</li>
+<li><b>工卡时间线</b> — 递交满 150 天可申请工卡、满 180 天最早获批</li>
+<li><b>绿卡节点</b> — 庇护获批满 1 年后递交 I-485 的阶段安排</li>
+</ul>
+</div>
+<div class="es-block">
+<h4>现行官方费用（FY2027）</h4>
+<ul class="es-fees">
+<li><span>I-589 申请费</span><b>$100</b></li>
+<li><span>年度庇护费</span><b>$105 / 年</b></li>
+<li><span>工卡首办 (c)(8)</span><b>$570 / 人</b></li>
+<li><span>工卡续期 · 纸质</span><b>$795 / 人 / 次</b></li>
+<li><span>工卡续期 · 网上</span><b>$745 / 人 / 次</b></li>
+<li><span>I-485 成人 / 儿童</span><b>$1,440 / $950</b></li>
+</ul>
+</div>
+</div>
+<p class="es-note">费用按家庭人数、工卡人数与预计等待年数逐项累加，分申请、工卡、绿卡三个阶段列明小计与总计。</p>
 </div>
 
 <div id="results" hidden>
@@ -588,26 +741,27 @@ header.site .brand,.hero h1 { color: #000;}
 
 <!-- ============ 联系 ============ -->
 <section class="contact" aria-label="联系方式">
-<div class="contact-head">
-<span class="name">JACK CHEN</span>
-<a class="phone" href="tel:+17472599999">电话 / WhatsApp (747) 259-9999</a>
+<div class="plaque">
+<p class="plaque-label">联系咨询</p>
+<p class="plaque-name">JACK CHEN</p>
+<div class="plaque-rule" aria-hidden="true"><span></span></div>
+<a class="plaque-phone" href="tel:+17472599999">
+<span class="plaque-phone-label">电话 / WhatsApp</span>
+<span class="plaque-phone-num">(747) 259-9999</span>
+</a>
 </div>
-<div class="contact-grid">
-<div class="contact-cell">
-<h3>联系咨询</h3>
-<p>把计算结果截图或复制摘要发过来，即可按您的情况具体分析。</p>
-</div>
-<div class="contact-cell">
+<div class="contact-strip">
+<div class="strip-cell">
 <h3>社交账号</h3>
-<p>X · 微信 · 抖音：<b>usaJAckLaw</b></p>
-<p>视频号：<b>US法师</b></p>
+<p>X · 微信 · 抖音 <b>usaJAckLaw</b></p>
+<p>视频号 <b>US法师</b></p>
 </div>
-<div class="contact-cell">
+<div class="strip-cell">
 <h3>线下办公室</h3>
 <ul class="offices">
-<li>纽约<span>法拉盛 · 缅街</span></li>
-<li>新泽西<span>预约制</span></li>
-<li>洛杉矶<span>尔湾</span></li>
+<li><b>纽约</b>法拉盛 · 缅街</li>
+<li><b>新泽西</b>预约制</li>
+<li><b>洛杉矶</b>尔湾</li>
 </ul>
 </div>
 </div>
@@ -617,7 +771,7 @@ header.site .brand,.hero h1 { color: #000;}
 <footer class="site">
 <div class="rule">
 <p>本计算器由专业移民团队制作，依据公开的官方费用标准与一般程序规则提供估算，仅供参考，不构成法律意见或建议。每个案件的情况不同，关键期限与费用请在递交前核实，或直接与我们联系确认。</p>
-<p>© 2026 JACK CHEN · 专业移民团队 · usajacklaw.github.io/calculator</p>
+<p class="copy">© 2026 JACK CHEN · 专业移民团队 · usajacklaw.github.io/calculator</p>
 </div>
 </footer>
 
@@ -704,7 +858,7 @@ var adults = clampInt($("adults").value, 1, 20, 1);
 var children = clampInt($("children").value, 0, 20, 0);
 var eadCount = clampInt($("eadCount").value, 0, 20, 0);
 var renewals = clampInt($("renewals").value, 0, 3, 0);
-var waitYears = clampInt($("waitYears").value, 1, 5, 2);
+var waitYears = clampInt($("waitYears").value, 1, 5, 1);
 var people = adults + children;
 
 // ---- 时间线 ----

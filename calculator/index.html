@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>I-589 庇护申请计算器 · 专业移民团队</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2.25rem;}
+
+:root {
+--navy: #16283f;
+--navy-deep: #0f1d30;
+--ink: #1c2733;
+--body-text: #33424f;
+--muted: #68788a;
+--brass: #a5813c;
+--brass-soft: #c9ab63;
+--paper: #f7f5f0;
+--card: #ffffff;
+--line: #ddd6c8;
+--line-soft: #e9e4d8;
+--field-bg: #fdfcf9;
+--warn-bg: #fdf3e3;
+--warn-line: #e3c07f;
+--warn-text: #7a5410;
+--danger-bg: #fbeae7;
+--danger-line: #dfa49b;
+--danger-text: #8c2f22;
+--ok-bg: #eaf3ec;
+--ok-line: #a9c8b0;
+--ok-text: #2c5c38;
+--total-bg: #16283f;
+--total-text: #f2ead6;
+--shadow: 0 10px 30px rgba(22, 40, 63, 0.08);
+}
+@media (prefers-color-scheme: dark) {
+:root {
+--navy: #1d3450;
+--navy-deep: #0b1524;
+--ink: #eef1f4;
+--body-text: #c3cdd6;
+--muted: #8d9dab;
+--brass: #c9ab63;
+--brass-soft: #c9ab63;
+--paper: #10161d;
+--card: #18222d;
+--line: #33414f;
+--line-soft: #28343f;
+--field-bg: #131d28;
+--warn-bg: #2e2413;
+--warn-line: #7a5f24;
+--warn-text: #e8c877;
+--danger-bg: #331b17;
+--danger-line: #7c443a;
+--danger-text: #efb3a7;
+--ok-bg: #16281b;
+--ok-line: #3c5c43;
+--ok-text: #a9d3b1;
+--total-bg: #1d3450;
+--total-text: #f2ead6;
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+}
+
+* { box-sizing: border-box;}
+html { -webkit-text-size-adjust: 100%;}
+body {
+margin: 0;
+background: var(--paper);
+color: var(--body-text);
+font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+font-size: 16px;
+line-height: 1.65;
+}
+.serif { font-family: "Noto Serif SC", "Songti SC", serif;}
+
+/* ---------- Header ---------- */
+header.site {
+background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+color: #eef1f4;
+border-bottom: 3px solid var(--brass);
+}
+.site-inner {
+max-width: 1080px;
+margin: 0 auto;
+padding: 20px 20px 26px;
+}
+.site-top {
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+justify-content: space-between;
+gap: 6px 18px;
+padding-bottom: 14px;
+border-bottom: 1px solid rgba(238, 241, 244, 0.16);
+}
+.brand {
+font-family: "Noto Serif SC", "Songti SC", serif;
+font-weight: 900;
+font-size: 21px;
+letter-spacing: 0.14em;
+color: #fff;
+}
+.brand small {
+display: block;
+font-family: "Noto Sans SC", sans-serif;
+font-weight: 400;
+font-size: 11.5px;
+letter-spacing: 0.32em;
+color: var(--brass-soft);
+margin-top: 2px;
+}
+.site-nav {
+font-size: 13.5px;
+color: #b9c6d2;
+letter-spacing: 0.04em;
+}
+.site-nav b { color: #fff; font-weight: 500;}
+.site-nav .sep { margin: 0 8px; color: rgba(238,241,244,.35);}
+.hero { padding-top: 22px;}
+.hero h1 {
+margin: 0 0 8px;
+font-family: "Noto Serif SC", "Songti SC", serif;
+font-weight: 900;
+font-size: clamp(26px, 5.4vw, 38px);
+line-height: 1.25;
+color: #fff;
+}
+.hero h1 .gold { color: var(--brass-soft);}
+.hero p {
+margin: 0;
+max-width: 640px;
+font-size: 15px;
+color: #c3cedb;
+}
+.path-chip {
+display: inline-block;
+margin-top: 14px;
+padding: 3px 12px;
+border: 1px solid rgba(201, 171, 99, 0.55);
+border-radius: 999px;
+font-size: 12.5px;
+letter-spacing: 0.06em;
+color: var(--brass-soft);
+}
+
+/* ---------- Layout ---------- */
+main {
+max-width: 1080px;
+margin: 0 auto;
+padding: 26px 20px 10px;
+}
+.layout {
+display: grid;
+grid-template-columns: 380px 1fr;
+gap: 22px;
+align-items: start;
+}
+@media (max-width: 860px) {
+.layout { grid-template-columns: 1fr;}
+}
+.card {
+background: var(--card);
+border: 1px solid var(--line);
+border-radius: 6px;
+box-shadow: var(--shadow);
+}
+.card-head {
+padding: 16px 20px 0;
+}
+.card-head h2 {
+margin: 0;
+font-family: "Noto Serif SC", "Songti SC", serif;
+font-size: 19px;
+font-weight: 700;
+color: var(--ink);
+}
+.card-head p { margin: 4px 0 0; font-size: 13px; color: var(--muted);}
+.card-body { padding: 14px 20px 20px;}
+
+/* ---------- Form ---------- */
+.field { margin-bottom: 16px;}
+.field:last-child { margin-bottom: 4px;}
+label.lbl {
+display: block;
+font-size: 14px;
+font-weight: 500;
+color: var(--ink);
+margin-bottom: 6px;
+}
+label.lbl .hint { font-weight: 400; color: var(--muted); font-size: 12.5px;}
+input[type="date"], input[type="number"], select {
+width: 100%;
+padding: 8px 10px;
+font: inherit;
+font-size: 15px;
+color: var(--ink);
+background: var(--field-bg);
+border: 1px solid var(--line);
+border-radius: 4px;
+}
+input:focus, select:focus { outline: 2px solid var(--brass); outline-offset: 1px;}
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px;}
+.seg {
+display: grid;
+grid-template-columns: 1fr 1fr;
+border: 1px solid var(--line);
+border-radius: 4px;
+overflow: hidden;
+}
+.seg button {
+appearance: none;
+border: 0;
+background: var(--field-bg);
+color: var(--body-text);
+font: inherit;
+font-size: 14.5px;
+padding: 8px 6px;
+cursor: pointer;
+min-height: 2.5rem;
+}
+.seg button + button { border-left: 1px solid var(--line);}
+.seg button[aria-pressed="true"] {
+background: var(--navy);
+color: #fff;
+font-weight: 500;
+}
+.calc-btn {
+width: 100%;
+margin-top: 6px;
+padding: 11px;
+font: inherit;
+font-size: 16px;
+font-weight: 700;
+letter-spacing: 0.12em;
+color: #fff;
+background: var(--navy);
+border: 1px solid var(--navy);
+border-bottom: 3px solid var(--brass);
+border-radius: 4px;
+cursor: pointer;
+min-height: 3rem;
+}
+.calc-btn:active { transform: translateY(1px);}
+.form-note { font-size: 12.5px; color: var(--muted); margin: 10px 0 0;}
+
+/* ---------- Results ---------- */
+.alert {
+border: 1px solid;
+border-radius: 4px;
+padding: 12px 16px;
+font-size: 14.5px;
+margin-bottom: 18px;
+display: none;
+}
+.alert.show { display: block;}
+.alert.ok { background: var(--ok-bg); border-color: var(--ok-line); color: var(--ok-text);}
+.alert.warn { background: var(--warn-bg); border-color: var(--warn-line); color: var(--warn-text);}
+.alert.danger { background: var(--danger-bg); border-color: var(--danger-line); color: var(--danger-text);}
+.alert b { font-weight: 700;}
+
+h3.block-title {
+margin: 22px 0 10px;
+font-family: "Noto Serif SC", "Songti SC", serif;
+font-size: 16.5px;
+font-weight: 700;
+color: var(--ink);
+display: flex;
+align-items: center;
+gap: 10px;
+}
+h3.block-title:first-of-type { margin-top: 2px;}
+h3.block-title::after { content: ""; flex: 1; height: 1px; background: var(--line-soft);}
+h3.block-title .no {
+font-family: "Noto Sans SC", sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.08em;
+color: var(--brass);
+border: 1px solid var(--brass);
+border-radius: 999px;
+padding: 1px 8px;
+}
+
+.timeline { list-style: none; margin: 0; padding: 0;}
+.timeline li {
+display: grid;
+grid-template-columns: 118px 1fr;
+gap: 4px 14px;
+padding: 9px 0;
+border-bottom: 1px dashed var(--line-soft);
+font-size: 14.5px;
+}
+.timeline li:last-child { border-bottom: 0;}
+.timeline .d {
+font-weight: 700;
+color: var(--ink);
+font-variant-numeric: tabular-nums;
+white-space: nowrap;
+}
+.timeline .t { display: block; }
+.timeline .t b { color: var(--ink); font-weight: 500;}
+.timeline .t span { color: var(--muted); font-size: 13px; display: block;}
+@media (max-width: 480px) {
+.timeline li { grid-template-columns: 1fr; gap: 0;}
+}
+
+table.fees { width: 100%; border-collapse: collapse; font-size: 14.5px;}
+table.fees th, table.fees td {
+padding: 9px 8px;
+border-bottom: 1px solid var(--line-soft);
+vertical-align: top;
+}
+table.fees thead th {
+text-align: left;
+font-size: 12.5px;
+font-weight: 500;
+color: var(--muted);
+border-bottom: 1px solid var(--line);
+}
+table.fees th.num, table.fees td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;}
+table.fees td.item b { color: var(--ink); font-weight: 500; display: block;}
+table.fees td.item span { color: var(--muted); font-size: 12.5px;}
+table.fees tr.subtotal td {
+font-weight: 700;
+color: var(--ink);
+background: var(--field-bg);
+border-bottom: 1px solid var(--line);
+}
+table.fees td.item span.alt { color: var(--brass);}
+.grand {
+margin-top: 14px;
+background: var(--total-bg);
+color: var(--total-text);
+border-radius: 4px;
+padding: 14px 16px;
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+justify-content: space-between;
+gap: 4px 16px;
+}
+.grand .g-label { font-size: 13.5px; letter-spacing: 0.06em;}
+.grand .g-value {
+font-family: "Noto Serif SC", serif;
+font-size: 24px;
+font-weight: 900;
+font-variant-numeric: tabular-nums;
+}
+.grand .g-sub { width: 100%; font-size: 12.5px; color: #b9c6d2;}
+@media (prefers-color-scheme: dark) {.grand .g-sub { color: #9fb0c0;}}
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px;}
+.actions button {
+appearance: none;
+font: inherit;
+font-size: 14px;
+padding: 8px 18px;
+border-radius: 4px;
+cursor: pointer;
+min-height: 2.5rem;
+}
+.btn-solid { background: var(--navy); color: #fff; border: 1px solid var(--navy);}
+.btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line);}
+.copy-ok { font-size: 13px; color: var(--ok-text); align-self: center; display: none;}
+
+.empty-state {
+border: 1px dashed var(--line);
+border-radius: 4px;
+padding: 26px 18px;
+text-align: center;
+color: var(--muted);
+font-size: 14.5px;
+}
+
+.fineprint { font-size: 12.5px; color: var(--muted); margin-top: 16px;}
+.fineprint p { margin: 0 0 6px;}
+
+/* ---------- Contact / footer ---------- */
+section.contact {
+margin-top: 28px;
+background: var(--navy);
+border-radius: 6px;
+color: #c3cedb;
+padding: 30px 34px 26px;
+}
+@media (max-width: 640px) { section.contact { padding: 24px 22px 20px;}}
+.contact-head {
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+justify-content: space-between;
+gap: 4px 20px;
+padding-bottom: 16px;
+border-bottom: 1px solid rgba(238, 241, 244, 0.16);
+}
+.contact-head .name {
+font-family: "Noto Serif SC", serif;
+font-size: 22px;
+font-weight: 900;
+letter-spacing: 0.1em;
+color: #fff;
+}
+.contact-head .phone {
+font-size: 17px;
+font-variant-numeric: tabular-nums;
+color: var(--brass-soft);
+text-decoration: none;
+letter-spacing: 0.04em;
+}
+.contact-grid {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 10px 28px;
+padding-top: 18px;
+}
+@media (max-width: 860px) {.contact-grid { grid-template-columns: 1fr; gap: 16px;}}
+.contact-cell h3 {
+margin: 0 0 6px;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.26em;
+color: var(--brass-soft);
+}
+.contact-cell p { margin: 2px 0 0; font-size: 14px; line-height: 1.7;}
+.contact-cell b { color: #fff; font-weight: 500;}
+.offices { list-style: none; margin: 0; padding: 0; font-size: 14px;}
+.offices li { padding: 2px 0; color: #eef1f4;}
+.offices li span { color: #93a5b8; font-size: 13px; margin-left: 8px;}
+
+footer.site {
+max-width: 1080px;
+margin: 0 auto;
+padding: 18px 20px 34px;
+font-size: 12.5px;
+color: var(--muted);
+}
+footer.site .rule { border-top: 1px solid var(--line); padding-top: 14px;}
+footer.site p { margin: 0 0 6px; max-width: 860px;}
+
+@media print {
+header.site { background: #fff; color: #000; border-bottom: 2px solid #000;}
+header.site .brand,.hero h1 { color: #000;}
+.hero p,.site-nav { color: #333;}
+.card { box-shadow: none;}
+.calc-btn,.actions,.path-chip { display: none;}
+}
+</style>
+</head>
+<body>
+<header class="site">
+<div class="site-inner">
+<div class="site-top">
+<div class="brand">JACK CHEN<small>专业移民团队 · USAJACKLAW</small></div>
+<nav class="site-nav" aria-label="站点">
+<span>主站首页</span><span class="sep">/</span><b>庇护计算器</b>
+</nav>
+</div>
+<div class="hero">
+<h1>I-589 庇护申请<span class="gold">计算器</span></h1>
+<p>输入入境日期与家庭情况，即刻算出一年递交期限、工卡时间线，以及从申请到绿卡的全部官方费用——纸质与网上递交两种价格都列明。</p>
+<span class="path-chip">usajacklaw.github.io/calculator</span>
+</div>
+</div>
+</header>
+
+<main>
+<div class="layout">
+<!-- ============ 输入 ============ -->
+<section class="card" aria-label="计算条件">
+<div class="card-head">
+<h2>填写您的情况</h2>
+<p>信息只在本页计算，不会上传或保存。</p>
+</div>
+<div class="card-body">
+<form id="calcForm" novalidate>
+<div class="field">
+<label class="lbl" for="entryDate">入境美国日期 <span class="hint">以 I-94 记录为准</span></label>
+<input type="date" id="entryDate" required />
+</div>
+<div class="field">
+<label class="lbl" for="fileDate">I-589 递交日期 <span class="hint">已递交填实际日期，未递交填计划日期</span></label>
+<input type="date" id="fileDate" />
+</div>
+<div class="two-col">
+<div class="field">
+<label class="lbl" for="adults">成人人数 <span class="hint">14 岁以上</span></label>
+<input type="number" id="adults" min="1" max="20" step="1" value="1" />
+</div>
+<div class="field">
+<label class="lbl" for="children">儿童人数 <span class="hint">14 岁以下</span></label>
+<input type="number" id="children" min="0" max="20" step="1" value="0" />
+</div>
+</div>
+<div class="two-col">
+<div class="field">
+<label class="lbl" for="eadCount">需要工卡人数</label>
+<input type="number" id="eadCount" min="0" max="20" step="1" value="1" />
+</div>
+<div class="field">
+<label class="lbl" for="renewals">预计工卡续期次数 <span class="hint">每人</span></label>
+<select id="renewals">
+<option value="0">0 次</option>
+<option value="1" selected>1 次</option>
+<option value="2">2 次</option>
+<option value="3">3 次</option>
+</select>
+</div>
+</div>
+<div class="field">
+<label class="lbl">工卡续期递交方式</label>
+<div class="seg" role="group" aria-label="工卡续期递交方式">
+<button type="button" id="segPaper" aria-pressed="true">纸质递交 $795</button>
+<button type="button" id="segOnline" aria-pressed="false">网上递交 $745</button>
+</div>
+</div>
+<div class="field">
+<label class="lbl" for="waitYears">预计案件等待年数 <span class="hint">用于估算年度庇护费</span></label>
+<select id="waitYears">
+<option value="1">1 年</option>
+<option value="2" selected>2 年</option>
+<option value="3">3 年</option>
+<option value="4">4 年</option>
+<option value="5">5 年</option>
+</select>
+</div>
+<button type="submit" class="calc-btn">开始计算</button>
+<p class="form-note">费用按 FY2027 标准（2026 年 10 月 16 日起生效）计算，含 H.R.1 附加费。</p>
+</form>
+</div>
+</section>
+
+<!-- ============ 结果 ============ -->
+<section class="card" aria-label="计算结果" aria-live="polite">
+<div class="card-head">
+<h2>您的时间表与费用表</h2>
+<p id="resultMeta">填写左侧信息后点击「开始计算」。</p>
+</div>
+<div class="card-body">
+<div class="alert" id="deadlineAlert" role="status"></div>
+
+<div class="empty-state" id="emptyState">
+结果会显示在这里：<br />一年递交期限 · 工卡时间线 · 分阶段费用总表
+</div>
+
+<div id="results" hidden>
+<h3 class="block-title"><span class="no">时间表</span>关键日期</h3>
+<ul class="timeline" id="timeline"></ul>
+
+<h3 class="block-title"><span class="no">费用表</span>官方费用明细</h3>
+<table class="fees">
+<thead>
+<tr>
+<th>项目</th>
+<th class="num">单价</th>
+<th class="num">数量</th>
+<th class="num">小计</th>
+</tr>
+</thead>
+<tbody id="feeBody"></tbody>
+</table>
+
+<div class="grand">
+<span class="g-label">全部阶段费用合计（估算）</span>
+<span class="g-value" id="grandTotal">—</span>
+<span class="g-sub" id="grandSub"></span>
+</div>
+
+<div class="actions">
+<button type="button" class="btn-solid" id="copyBtn">复制结果摘要</button>
+<span class="copy-ok" id="copyOk">已复制，可直接粘贴发送</span>
+</div>
+
+<div class="fineprint">
+<p>· 工卡续期两种价格：纸质递交 $795／人／次（基础费 $520 + 附加费 $275），网上递交 $745／人／次（基础费 $470 + 附加费 $275）。切换上方递交方式，合计随之更新。</p>
+<p>· 年度庇护费 $105／年：案件待决期间按年缴纳。注：2026 年 8 月法院禁令已暂停未缴年费的后果执行，移民局目前仍列示并收取该费用。</p>
+<p>· 费用依据移民局 G-1055 费用表与 H.R.1 相关附加费整理，递交前请以移民局官网当日公布为准。</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<!-- ============ 联系 ============ -->
+<section class="contact" aria-label="联系方式">
+<div class="contact-head">
+<span class="name">JACK CHEN</span>
+<a class="phone" href="tel:+17472599999">电话 / WhatsApp (747) 259-9999</a>
+</div>
+<div class="contact-grid">
+<div class="contact-cell">
+<h3>联系咨询</h3>
+<p>把计算结果截图或复制摘要发过来，即可按您的情况具体分析。</p>
+</div>
+<div class="contact-cell">
+<h3>社交账号</h3>
+<p>X · 微信 · 抖音：<b>usaJAckLaw</b></p>
+<p>视频号：<b>US法师</b></p>
+</div>
+<div class="contact-cell">
+<h3>线下办公室</h3>
+<ul class="offices">
+<li>纽约<span>法拉盛 · 缅街</span></li>
+<li>新泽西<span>预约制</span></li>
+<li>洛杉矶<span>尔湾</span></li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site">
+<div class="rule">
+<p>本计算器由专业移民团队制作，依据公开的官方费用标准与一般程序规则提供估算，仅供参考，不构成法律意见或建议。每个案件的情况不同，关键期限与费用请在递交前核实，或直接与我们联系确认。</p>
+<p>© 2026 JACK CHEN · 专业移民团队 · usajacklaw.github.io/calculator</p>
+</div>
+</footer>
+
+<script>
+(function () {
+"use strict";
+
+// FY2027 费用标准（2026-10-16 起生效，含 H.R.1 附加费）
+var FEE = {
+i589: 100, // I-589 申请费，整份申请一次
+annual: 105, // 年度庇护费 / 年
+eadFirst: 570, // 工卡首办 (c)(8)：基础费 $0 + 附加费 $570
+eadRenewBasePaper: 520,
+eadRenewBaseOnline: 470,
+eadRenewSurcharge: 275,
+i485Adult: 1440, // 14 岁以上
+i485Child: 950 // 14 岁以下随父母递交
+};
+
+var mode = "paper"; // 工卡续期递交方式
+var lastSummary = "";
+
+var $ = function (id) { return document.getElementById(id);};
+var form = $("calcForm");
+
+function pad(n) { return (n < 10? "0": "") + n;}
+function fmtDate(d) {
+return d.getFullYear() + " 年 " + (d.getMonth() + 1) + " 月 " + d.getDate() + " 日";
+}
+function fmtDateShort(d) {
+return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+}
+function fmtMoney(n) {
+return "$" + n.toLocaleString("en-US");
+}
+function parseDate(v) {
+if (!v) return null;
+var p = v.split("-");
+if (p.length!== 3) return null;
+var d = new Date(+p[0], +p[1] - 1, +p[2]);
+return isNaN(d.getTime())? null: d;
+}
+function addDays(d, n) {
+var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+x.setDate(x.getDate() + n);
+return x;
+}
+function addYears(d, n) {
+var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+x.setFullYear(x.getFullYear() + n);
+return x;
+}
+function clampInt(v, min, max, fallback) {
+var n = parseInt(v, 10);
+if (isNaN(n)) return fallback;
+return Math.max(min, Math.min(max, n));
+}
+
+// 默认递交日期 = 今天
+var today = new Date();
+$("fileDate").value = fmtDateShort(today);
+
+// 递交方式切换
+function setMode(m) {
+mode = m;
+$("segPaper").setAttribute("aria-pressed", m === "paper"? "true": "false");
+$("segOnline").setAttribute("aria-pressed", m === "online"? "true": "false");
+if (!$("results").hidden) calculate();
+}
+$("segPaper").addEventListener("click", function () { setMode("paper");});
+$("segOnline").addEventListener("click", function () { setMode("online");});
+
+function calculate() {
+var entry = parseDate($("entryDate").value);
+var alertBox = $("deadlineAlert");
+if (!entry) {
+alertBox.className = "alert show danger";
+alertBox.innerHTML = "请先填写<b>入境美国日期</b>，才能算出一年递交期限。";
+$("entryDate").focus();
+return;
+}
+var filed = parseDate($("fileDate").value) || new Date(today.getFullYear(), today.getMonth(), today.getDate());
+var adults = clampInt($("adults").value, 1, 20, 1);
+var children = clampInt($("children").value, 0, 20, 0);
+var eadCount = clampInt($("eadCount").value, 0, 20, 0);
+var renewals = clampInt($("renewals").value, 0, 3, 0);
+var waitYears = clampInt($("waitYears").value, 1, 5, 2);
+var people = adults + children;
+
+// ---- 时间线 ----
+var deadline = addYears(entry, 1);
+var now = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+var daysLeft = Math.round((deadline - now) / 86400000);
+var eadFileDate = addDays(filed, 150);
+var eadGrantDate = addDays(filed, 180);
+
+if (daysLeft < 0) {
+alertBox.className = "alert show danger";
+alertBox.innerHTML = "一年期限已于 <b>" + fmtDate(deadline) + "</b> 届满（已过 " + Math.abs(daysLeft) + " 天）。逾期递交需要说明特殊情形或情况变化，请尽快联系我们评估，不要再拖延。";
+} else if (daysLeft <= 90) {
+alertBox.className = "alert show warn";
+alertBox.innerHTML = "一年期限只剩 <b>" + daysLeft + " 天</b>（" + fmtDate(deadline) + " 截止）。材料准备和递交都需要时间，建议立即着手。";
+} else {
+alertBox.className = "alert show ok";
+alertBox.innerHTML = "一年期限截止 <b>" + fmtDate(deadline) + "</b>，还剩 <b>" + daysLeft + " 天</b>。请务必在期限届满前完成递交，并保留好递交凭证。";
+}
+
+var tl = [
+{ d: entry, t: "入境美国", s: "一年期限自入境次日起算，以 I-94 记录日期为准"},
+{ d: deadline, t: "I-589 一年递交期限截止", s: "逾期递交须额外说明特殊情形或情况变化，难度显著增加"},
+{ d: filed, t: "I-589 递交日（按您填写）", s: "庇护时钟自此起算；年度庇护费按待决年数缴纳"},
+{ d: eadFileDate, t: "可递交工卡申请（I-765）", s: "递交 I-589 满 150 天后可申请首张工卡"},
+{ d: eadGrantDate, t: "工卡最早可获批", s: "庇护时钟满 180 天后移民局方可批准工卡；因申请人原因的延误会暂停时钟"},
+{ d: null, t: "庇护获批满 1 年后递交 I-485", s: "获批日期确定后即可算出具体日期，绿卡费用在该阶段产生"}
+];
+$("timeline").innerHTML = tl.map(function (it) {
+return "<li><span class=\"d\">" + (it.d? fmtDate(it.d): "获批 + 1 年") + "</span>" +
+"<span class=\"t\"><b>" + it.t + "</b><span>" + it.s + "</span></span></li>";
+}).join("");
+
+// ---- 费用表 ----
+var renewUnit = (mode === "paper"? FEE.eadRenewBasePaper: FEE.eadRenewBaseOnline) + FEE.eadRenewSurcharge;
+var renewUnitAlt = (mode === "paper"? FEE.eadRenewBaseOnline: FEE.eadRenewBasePaper) + FEE.eadRenewSurcharge;
+var rows = [];
+var stageA = 0, stageB = 0, stageC = 0;
+
+var c589 = FEE.i589;
+stageA += c589;
+rows.push({ item: "I-589 庇护申请费", note: "整份申请一次，含配偶及子女副申请人", unit: FEE.i589, qty: "1 份", sub: c589});
+
+var cAnnual = FEE.annual * waitYears;
+stageA += cAnnual;
+rows.push({ item: "年度庇护费", note: "案件待决期间按年缴纳，按 " + waitYears + " 年估算", unit: FEE.annual, qty: waitYears + " 年", sub: cAnnual});
+rows.push({ subtotal: "申请阶段小计", sub: stageA});
+
+if (eadCount > 0) {
+var cFirst = FEE.eadFirst * eadCount;
+stageB += cFirst;
+rows.push({ item: "工卡首办（I-765，类别 (c)(8)）", note: "基础费 $0 + H.R.1 附加费 $570", unit: FEE.eadFirst, qty: eadCount + " 人", sub: cFirst});
+if (renewals > 0) {
+var cRenew = renewUnit * eadCount * renewals;
+stageB += cRenew;
+rows.push({
+item: "工卡续期（" + (mode === "paper"? "纸质": "网上") + "递交）",
+note: "基础费 " + fmtMoney(mode === "paper"? FEE.eadRenewBasePaper: FEE.eadRenewBaseOnline) + " + 附加费 $275",
+alt: "另一种方式：" + (mode === "paper"? "网上": "纸质") + " " + fmtMoney(renewUnitAlt) + "／人／次",
+unit: renewUnit, qty: eadCount + " 人 × " + renewals + " 次", sub: cRenew
+});
+}
+rows.push({ subtotal: "工卡阶段小计", sub: stageB});
+}
+
+var c485a = FEE.i485Adult * adults;
+stageC += c485a;
+rows.push({ item: "I-485 绿卡申请费（成人）", note: "庇护获批满 1 年后递交，14 岁以上", unit: FEE.i485Adult, qty: adults + " 人", sub: c485a});
+if (children > 0) {
+var c485c = FEE.i485Child * children;
+stageC += c485c;
+rows.push({ item: "I-485 绿卡申请费（儿童）", note: "14 岁以下、与父母同时递交", unit: FEE.i485Child, qty: children + " 人", sub: c485c});
+}
+rows.push({ subtotal: "绿卡阶段小计", sub: stageC});
+
+$("feeBody").innerHTML = rows.map(function (r) {
+if (r.subtotal) {
+return "<tr class=\"subtotal\"><td colspan=\"3\">" + r.subtotal + "</td><td class=\"num\">" + fmtMoney(r.sub) + "</td></tr>";
+}
+return "<tr><td class=\"item\"><b>" + r.item + "</b><span>" + r.note + "</span>" +
+(r.alt? "<span class=\"alt\">" + r.alt + "</span>": "") + "</td>" +
+"<td class=\"num\">" + fmtMoney(r.unit) + "</td><td class=\"num\">" + r.qty + "</td>" +
+"<td class=\"num\">" + fmtMoney(r.sub) + "</td></tr>";
+}).join("");
+
+var grand = stageA + stageB + stageC;
+$("grandTotal").textContent = fmtMoney(grand);
+$("grandSub").textContent =
+"申请阶段 " + fmtMoney(stageA) + " ＋ 工卡阶段 " + fmtMoney(stageB) + " ＋ 绿卡阶段 " + fmtMoney(stageC) +
+"｜一家 " + people + " 人（成人 " + adults + "、儿童 " + children + "），工卡续期按" + (mode === "paper"? "纸质": "网上") + "递交计";
+
+$("resultMeta").textContent = "按入境日期 " + fmtDate(entry) + "、递交日期 " + fmtDate(filed) + " 计算 · FY2027 费用标准";
+$("emptyState").hidden = true;
+$("results").hidden = false;
+
+lastSummary =
+"\n" +
+"入境日期：" + fmtDate(entry) + "\n" +
+"一年递交期限：" + fmtDate(deadline) + "（还剩 " + daysLeft + " 天）\n" +
+"I-589 递交日：" + fmtDate(filed) + "\n" +
+"可申请工卡：" + fmtDate(eadFileDate) + "（满 150 天）\n" +
+"工卡最早获批：" + fmtDate(eadGrantDate) + "（满 180 天）\n" +
+"家庭构成：成人 " + adults + " 人、儿童 " + children + " 人；工卡 " + eadCount + " 人、续期 " + renewals + " 次（" + (mode === "paper"? "纸质": "网上") + "递交）\n" +
+"费用合计（估算）：" + fmtMoney(grand) + "\n" +
+"— 申请阶段 " + fmtMoney(stageA) + "（I-589 $100 + 年度庇护费 $105×" + waitYears + " 年）\n" +
+"— 工卡阶段 " + fmtMoney(stageB) + "（首办 $570/人；续期 " + fmtMoney(renewUnit) + "/人/次）\n" +
+"— 绿卡阶段 " + fmtMoney(stageC) + "（I-485 成人 $1,440/人、儿童 $950/人，获批满 1 年后）\n" +
+"以上为估算，仅供参考，不构成法律意见。— JACK CHEN · 专业移民团队 (747) 259-9999";
+}
+
+form.addEventListener("submit", function (e) {
+e.preventDefault();
+calculate();
+var r = $("results");
+if (!r.hidden && window.innerWidth <= 860) {
+r.scrollIntoView({ behavior: "smooth", block: "start"});
+}
+});
+["entryDate", "fileDate", "adults", "children", "eadCount", "renewals", "waitYears"].forEach(function (id) {
+$(id).addEventListener("change", function () {
+if (!$("results").hidden) calculate();
+});
+});
+
+$("copyBtn").addEventListener("click", function () {
+if (!lastSummary) return;
+var done = function () {
+var ok = $("copyOk");
+ok.style.display = "inline";
+setTimeout(function () { ok.style.display = "none";}, 2600);
+};
+if (navigator.clipboard && navigator.clipboard.writeText) {
+navigator.clipboard.writeText(lastSummary).then(done, function () { fallbackCopy(); done();});
+} else { fallbackCopy(); done();}
+});
+function fallbackCopy() {
+var ta = document.createElement("textarea");
+ta.value = lastSummary;
+ta.style.position = "fixed"; ta.style.opacity = "0";
+document.body.appendChild(ta);
+ta.select();
+try { document.execCommand("copy");} catch (e) {}
+document.body.removeChild(ta);
+}
+
+})();
+</script>
+</body>
+</html>
